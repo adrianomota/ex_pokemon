@@ -8,7 +8,7 @@ defmodule ExPokemonWeb.Router do
   scope "/api", ExPokemonWeb do
     pipe_through :api
 
-    resources "/trainers", TrainersController, only: [:create, :show, :delete, :update]
+    resources "/trainers", TrainersController, only: [:index, :create, :show, :delete, :update]
   end
 
   # Enables LiveDashboard only for development
