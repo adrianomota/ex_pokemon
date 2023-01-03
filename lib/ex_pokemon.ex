@@ -6,11 +6,12 @@ defmodule ExPokemon do
   Contexts are also responsible for managing your data, regardless
   if it comes from the database, an external API or others.
   """
-  alias ExPokemon.Trainer
+  alias ExPokemon.{Pokemon, Trainer}
 
   defdelegate create_trainer(params), to: Trainer.Create, as: :call
   defdelegate delete_trainer(id), to: Trainer.Delete, as: :call
   defdelegate fetch_trainer(id), to: Trainer.Fetch, as: :call
   defdelegate paginate_trainers(params), to: Trainer.Paginate, as: :call
   defdelegate update_trainer(params), to: Trainer.Update, as: :call
+  defdelegate fetch_pokemon(name), to: Pokemon.Get, as: :call
 end
