@@ -2,12 +2,16 @@ defmodule ExPokemon.Trainer do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias ExPokemon.Trainer.Pokemon
+
   @primary_key {:id, :binary_id, autogenerate: true}
 
   schema "trainers" do
     field :name, :string
     field :password, :string, virtual: true
     field :password_hash, :string
+
+    has_many :pokemon, Pokemon
     timestamps()
   end
 

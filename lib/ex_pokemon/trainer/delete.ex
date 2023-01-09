@@ -12,7 +12,7 @@ defmodule ExPokemon.Trainer.Delete do
 
   defp delete(uuid) do
     case fetch_trainer(uuid) do
-      nil -> {:error, "Trainer doesn't exists"}
+      nil -> {:not_found, "Trainer doesn't exists"}
       trainer -> Repo.delete(trainer)
     end
   end

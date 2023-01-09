@@ -12,7 +12,7 @@ defmodule ExPokemon.Trainer.Update do
 
   defp update(%{"id" => id} = params) do
     case fetch_trainer(id) do
-      nil -> {:error, "Trainer doesn't exists"}
+      nil -> {:not_found, "Trainer doesn't exists"}
       trainer -> update_trainer(trainer, params)
     end
   end

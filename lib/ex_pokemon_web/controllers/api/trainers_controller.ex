@@ -39,6 +39,7 @@ defmodule ExPokemonWeb.TrainersController do
     |> text("")
   end
 
+  defp handle_delete_response({:not_found, _reason} = error, _conn), do: error
   defp handle_delete_response({:error, _reason} = error, _conn), do: error
 
   defp handle_index_response({:ok, trainers}, conn, view, status) do
@@ -55,5 +56,6 @@ defmodule ExPokemonWeb.TrainersController do
     |> render(view, trainer: trainer)
   end
 
+  defp handle_response({:not_found, _changeset} = error, _conn, _view, _status), do: error
   defp handle_response({:error, _changeset} = error, _conn, _view, _status), do: error
 end
