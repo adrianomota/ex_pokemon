@@ -12,8 +12,8 @@ defmodule ExPokemon.Trainer.Pokemon.Delete do
 
   defp delete(uuid) do
     case fetch_pokemon(uuid) do
-      nil -> {:error, "Pokemon doesn't exists"}
-      pokemon -> Repo.delete!(pokemon)
+      nil -> {:not_found, "Pokemon doesn't exists"}
+      trainer_pokemon -> {:ok, Repo.delete!(trainer_pokemon)}
     end
   end
 

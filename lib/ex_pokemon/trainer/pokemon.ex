@@ -26,8 +26,11 @@ defmodule ExPokemon.Trainer.Pokemon do
     |> apply_action(:insert)
   end
 
-  def changeset(params) do
-    %__MODULE__{}
+  def changeset(params), do: create_changeset(%__MODULE__{}, params)
+  def changeset(trainer_pokemon, params), do: create_changeset(trainer_pokemon, params)
+
+  def create_changeset(module_or_trainer_pokemon, params) do
+    module_or_trainer_pokemon
     |> cast(params, @required)
     |> validate_required(@required)
     |> assoc_constraint(:trainer)

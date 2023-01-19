@@ -5,7 +5,6 @@ defmodule ExPokemonWeb.TrainersController do
 
   def index(conn, params) do
     ExPokemon.paginate_trainers(params)
-    |> IO.inspect()
     |> handle_index_response(conn, "index.json", :ok)
   end
 

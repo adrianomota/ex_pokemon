@@ -15,5 +15,9 @@ defmodule ExPokemon do
   defdelegate paginate_trainers(params), to: Trainer.Paginate, as: :call
   defdelegate update_trainer(params), to: Trainer.Update, as: :call
   defdelegate fetch_pokemon(name), to: Pokemon.Get, as: :call
+
   defdelegate create_trainer_pokemon(params), to: TrainerPokemon.Create, as: :call
+  defdelegate delete_trainer_pokemon(id), to: TrainerPokemon.Delete, as: :call
+  defdelegate fetch_trainer_pokemon(id), to: TrainerPokemon.Fetch, as: :call
+  defdelegate paginate_trainers_pokemons(params), to: TrainerPokemon.Paginate, as: :call
 end
