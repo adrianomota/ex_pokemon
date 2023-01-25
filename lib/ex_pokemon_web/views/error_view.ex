@@ -29,6 +29,10 @@ defmodule ExPokemonWeb.ErrorView do
     %{message: message}
   end
 
+  def render("401.json", %{result: message}) do
+    %{message: message}
+  end
+
   defp translate_errors(changeset) do
     traverse_errors(changeset, fn {msg, opts} ->
       Regex.replace(~r"%{(\w+)}", msg, fn _, key ->

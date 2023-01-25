@@ -6,11 +6,11 @@ defmodule ExPokemon.Trainer.Fetch do
   def call(id) do
     case UUID.cast(id) do
       :error -> {:error, "Invalid ID format"}
-      {:ok, uuid} -> delete(uuid)
+      {:ok, uuid} -> fetch(uuid)
     end
   end
 
-  defp delete(uuid) do
+  defp fetch(uuid) do
     case fetch_trainer(uuid) do
       nil -> {:error, "Trainer doesn't exists"}
       trainer -> {:ok, trainer}

@@ -3,14 +3,18 @@ defmodule ExPokemonWeb.TrainersView do
 
   alias ExPokemon.Trainer
 
-  def render("create.json", %{trainer: %Trainer{id: id, name: name, inserted_at: inserted_at}}) do
+  def render("create.json", %{
+        trainer: %Trainer{id: id, name: name, inserted_at: inserted_at},
+        token: token
+      }) do
     %{
       message: "trainer created successfully",
       trainer: %{
         id: id,
         name: name,
         inserted_at: inserted_at
-      }
+      },
+      token: token
     }
   end
 

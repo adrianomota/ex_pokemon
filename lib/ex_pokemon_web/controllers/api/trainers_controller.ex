@@ -1,60 +1,48 @@
 defmodule ExPokemonWeb.TrainersController do
   use ExPokemonWeb, :controller
 
+  alias ExPokemonWeb.Auth.Guardian
+
   action_fallback(ExPokemonWeb.FallbackController)
 
   def index(conn, params) do
-    ExPokemon.paginate_trainers(params)
-    |> handle_index_response(conn, "index.json", :ok)
+    with {:ok, trainers} <- ExPokemon.paginate_trainers(params) do
+      conn
+      |> put_status(:ok)
+      |> render("index.json", trainers: trainers)
+    end
   end
 
   def show(conn, %{"id" => id}) do
-    id
-    |> ExPokemon.fetch_trainer()
-    |> handle_response(conn, "show.json", :ok)
+    with {:ok, trainer} <- ExPokemon.fetch_trainer(id) do
+      conn
+      |> put_status(:ok)
+      |> render("show.json", trainer: trainer)
+    end
   end
 
   def create(conn, params) do
-    params
-    |> ExPokemon.create_trainer()
-    |> handle_response(conn, "create.json", :created)
+    with {:ok, trainer} <- ExPokemon.create_trainer(params),
+         {:ok, token, _claims} <- Guardian.encode_and_sign(trainer) do
+      conn
+      |> put_status(:created)
+      |> render("create.json", %{trainer: trainer, token: token})
+    end
   end
 
   def update(conn, params) do
-    params
-    |> ExPokemon.update_trainer()
-    |> handle_response(conn, "update.json", :ok)
+    with {:ok, trainer} <- ExPokemon.update_trainer(params) do
+      conn
+      |> put_status(:ok)
+      |> render("update.json", trainer: trainer)
+    end
   end
 
   def delete(conn, %{"id" => id}) do
-    id
-    |> ExPokemon.delete_trainer()
-    |> handle_delete_response(conn)
+    with {:ok, _traijner} <- ExPokemon.delete_trainer(id) do
+      conn
+      |> put_status(:no_content)
+      |> text("")
+    end
   end
-
-  defp handle_delete_response({:ok, _trainer}, conn) do
-    conn
-    |> put_status(:no_content)
-    |> text("")
-  end
-
-  defp handle_delete_response({:not_found, _reason} = error, _conn), do: error
-  defp handle_delete_response({:error, _reason} = error, _conn), do: error
-
-  defp handle_index_response({:ok, trainers}, conn, view, status) do
-    conn
-    |> put_status(status)
-    |> render(view, trainers: trainers)
-  end
-
-  defp handle_index_response({:error, _changeset} = error, _conn, _view, _status), do: error
-
-  defp handle_response({:ok, trainer}, conn, view, status) do
-    conn
-    |> put_status(status)
-    |> render(view, trainer: trainer)
-  end
-
-  defp handle_response({:not_found, _changeset} = error, _conn, _view, _status), do: error
-  defp handle_response({:error, _changeset} = error, _conn, _view, _status), do: error
 end

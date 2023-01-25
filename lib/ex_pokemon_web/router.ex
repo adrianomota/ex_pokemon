@@ -13,6 +13,8 @@ defmodule ExPokemonWeb.Router do
     resources "/trainer_pokemons", TrainerPokemonsController,
       only: [:index, :create, :show, :delete, :update]
 
+    post "/auth/signin", SigninController, :sign_in
+
     get "/pokemons/:name", PokemonController, :show
   end
 
