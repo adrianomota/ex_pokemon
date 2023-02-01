@@ -17,6 +17,8 @@ defmodule ExPokemonWeb.ConnCase do
 
   use ExUnit.CaseTemplate
 
+  alias ExPokemon.DataCase
+
   using do
     quote do
       # Import conveniences for testing with connections
@@ -32,7 +34,7 @@ defmodule ExPokemonWeb.ConnCase do
   end
 
   setup tags do
-    ExPokemon.DataCase.setup_sandbox(tags)
+    DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

@@ -41,8 +41,8 @@ defmodule ExPokemonWeb.TrainersController do
   def delete(conn, %{"id" => id}) do
     with {:ok, _traijner} <- ExPokemon.delete_trainer(id) do
       conn
-      |> put_status(:no_content)
-      |> text("")
+      |> put_status(:ok)
+      |> render("delete.json", %{})
     end
   end
 end

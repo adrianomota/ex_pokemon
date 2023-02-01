@@ -1,10 +1,8 @@
 defmodule ExPokemon.Trainer.Pokemon.Create do
-  alias ExPokemon.Pokemon
-  alias ExPokemon.Repo
-  alias ExPokemon.Trainer
-  alias ExPokemon.PokeApi.Client
-  alias ExPokemon.Trainer.Pokemon, as: TrainerPokemon
   alias Ecto.UUID
+  alias ExPokemon.PokeApi.Client
+  alias ExPokemon.{Pokemon, Repo, Trainer}
+  alias ExPokemon.Trainer.Pokemon, as: TrainerPokemon
 
   def call(%{"name" => name, "trainer_id" => trainer_id} = params) do
     case UUID.cast(trainer_id) do

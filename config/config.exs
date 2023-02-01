@@ -53,6 +53,11 @@ config :ex_pokemon, ExPokemonWeb.Auth.Guardian,
   issuer: "ex_pokemon",
   secret_key: "lAaSxVHqhRuvR6EP5291HadXY0ncnT4pJJluT7c6B0RZPNhdAmU58pwNP9OhPMEE"
 
+# auth pipeline
+config :ex_pokemon, ExPokemonWeb.Auth.Pipeline,
+  module: ExPokemonWeb.Auth.Guardian,
+  error_handler: ExPokemonWeb.Auth.ErrorHandler
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"

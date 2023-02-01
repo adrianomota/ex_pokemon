@@ -1,4 +1,7 @@
 # ExPokemon
+This project is a simple CRUD in order to register pokemons ans yous trainers only. My deal is test how to elixir and your functional paradigm
+help me to build this api of simple way.I enjoyed so much.
+
 
 To start your Phoenix server:
 

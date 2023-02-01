@@ -6,11 +6,11 @@ defmodule ExPokemon.Trainer.Pokemon.Delete do
   def call(id) do
     case UUID.cast(id) do
       :error -> {:error, "invalid ID format"}
-      {:ok, _UUID} -> delete(id)
+      {:ok, uuid} -> delete_trainer_pokemon(uuid)
     end
   end
 
-  defp delete(uuid) do
+  defp delete_trainer_pokemon(uuid) do
     case fetch_pokemon(uuid) do
       nil -> {:not_found, "Pokemon doesn't exists"}
       trainer_pokemon -> {:ok, Repo.delete!(trainer_pokemon)}

@@ -61,4 +61,8 @@ defmodule ExPokemonWeb.TrainersView do
       }
     }
   end
+
+  def render("delete.json", %{}) do
+    %{message: "Trainer deleted successfully"}
+  end
 end

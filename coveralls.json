@@ -1,0 +1,23 @@
+{
+  "skip_files": [
+    "lib/release.ex",
+    "lib/ex_pokemon/application.ex",
+    "lib/ex_pokemon_web.ex",
+    "lib/ex_pokemon_web/channels/user_socket.ex",
+    "lib/ex_pokemon/mailer.ex",
+    "lib/ex_pokemon/repo.ex",
+    "lib/ex_pokemon/main_live.ex",
+    "lib/ex_pokemon_web/views/error_helpers.ex",
+    "lib/ex_pokemon_web/telemetry.ex",
+    "lib/ex_pokemon_web/router.ex",
+    "lib/ex_pokemon_web/gettext.ex",
+    "lib/ex_pokemon_web/endpoint.ex",
+    "test/support/*"
+  ],
+
+  "coverage_options": {
+    "treat_no_relevant_lines_as_covered": true,
+    "output_dir": "cover/",
+    "minimum_coverage": 50
+  }
+}
