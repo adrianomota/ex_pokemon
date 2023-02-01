@@ -11,9 +11,6 @@ defmodule ExPokemon.PokeApi.Client do
   end
 
   defp handle_get({:ok, %Tesla.Env{status: 200, body: body}}), do: {:ok, body}
-
-  defp handle_get({:ok, %Tesla.Env{status: 404}}),
-    do: {:not_found, "Pokemon not found"}
-
+  defp handle_get({:ok, %Tesla.Env{status: 404}}), do: {:not_found, "Pokemon not found"}
   defp handle_get({:error, _reason} = error), do: error
 end
